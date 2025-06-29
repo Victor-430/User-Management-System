@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>CRUD</title>
+  </head>
+  <body>
+    <!-- <div class="form-container">
+      <h1>Welcome Vencedorr</h1>
+
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input name="name" type="text" id="name" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input name="password" type="password" id="password" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input name="email" type="email" id="email" />
+        </div>
+
+        <div class="form-group">
+          <label for="role">Role</label>
+          <input name="role" type="text" id="role" />
+        </div>
+        <div class="btn-group">
+          <button id="createUser" type="click" class="submitBtn">
+            Create User
+          </button>
+          <button id="updateUser" type="button" class="submitBtn">
+            Update User
+          </button>
+          <button id="deleteUser" type="button" class="submitBtn">
+            Delete User
+          </button>
+          <button id="allUsers" type="button" class="submitBtn">
+            View all users
+          </button>
+        </div>
+
+        <div id="message" class="message"></div>
+      </form>
+    </div> -->
+
+    <div class="container">
+      <h1>User Management System</h1>
+
+      <!-- Message Display -->
+      <div id="message" class="message"></div>
+
+      <!-- User Form Section  -->
+      <div class="form-section">
+        <h2 class="section-title">User Form</h2>
+
+        <div class="form-group">
+          <label for="userSelect" id="headline"
+            >* Select User (for Update/Delete):</label
+          >
+          <select id="userSelect">
+            <option value="">Select a user...</option>
+          </select>
+        </div>
+
+        <p id="headline">* Form (for Create/update)</p>
+
+        <div class="form-group">
+          <label for="name">Name *</label>
+          <input type="text" id="name" placeholder="Enter full name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter email address"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password *</label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter password (min 8 chars, 1 upper, 1 lower, 1 number)"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role">
+            <option value="">Select role...</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+            <option value="moderator">Moderator</option>
+            <option value="guest">Guest</option>
+          </select>
+        </div>
+
+        <div class="button-group">
+          <button id="createUser">Create User</button>
+          <button id="updateUser">Update User</button>
+          <button id="deleteUser">Delete User</button>
+          <button id="allUsers">Load All Users</button>
+        </div>
+      </div>
+      <!-- Users Display Section -->
+      <div class="users-section">
+        <h2 class="section-title">Users List</h2>
+        <div id="usersList">
+          <p style="text-align: center; color: #666; padding: 20px">
+            Click "Load All Users" to view users
+          </p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>
