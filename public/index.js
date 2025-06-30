@@ -206,37 +206,31 @@ const isValidPassword = (password) => {
 };
 
 // check for existing email and name
-const isNameExist =async (name = 'string', email = 'string') => {
+const isNameorEmailExist =(name = 'string', email = 'string', excludeUserId = null) => {
   try{
-    const findName = usersData.some(n => n.name === name)
-    const findEmail = usersData.some(n => n.email === email)
+    const findName = usersData.some(user => user.name === name && (!excludeUserId || user._id !== excludeUserId ))
+    const findEmail = usersData.some(user => user.email === email && (!excludeUserId || !user._id !== excludeUserId) )
     console.log(`findName: `, findName, findEmail)
     if(findName && findName) {
-      const error = await res.json().catch(() => {})
-      throw new Error( error.message || "This name or email already exists")
+      return{
+        exists:true, message:"Both name and email alrady exists"
+      }
+    }else if (findName){
+return{
+  exists:true, message:"This name already exists"
+}
+    }else if (findEmail) {
+return{
+  exists:true, message:"This email already exists"
+}
     }
+    return {exists:false, message: ""}
 
   }catch(err) {
     console.error('Email or Name already exists')
     throw err
   }
 }
-
-const isEmailExist =  (email) => {
-  try {
-    const findEmail = usersData.some(e => e.email === email )
-  console.log(`find email: `,findEmail)
-  if(findEmail){
-    throw new Error('This Email already exists')
-  }
-  } catch (error) {
-    console.error('Email already exists')
-  }
-  
-
-
-}
-
 
 
 document.getElementById("allUsers").addEventListener("click", async (e) => {
@@ -295,12 +289,13 @@ document.getElementById("createUser").addEventListener("click", async (e) => {
       return;
     }
 
-     if ( isNameExist(formData.name, formData.email) ){
-           return showMessage(`Email or Name already exists`, "error")
+    const validation = isNameorEmailExist(formData.name, formData.email)
+     if ( validation.exists ){
+            showMessage(validation.message , "error")
+            return
 
      }
 
-     
 
     showMessage("Creating user...", "info");
 
@@ -423,6 +418,13 @@ document.getElementById("updateUser").addEventListener("click", async (e) => {
       showMessage("Please enter a valid email address", "error");
       return;
     }
+
+    const validation = isNameorEmailExist(formData.name, formData.email, userId)
+     if ( validation.exists ){
+            showMessage(validation.message , "error")
+            return
+
+     }
 
     showMessage("Updating user...", "info");
 
