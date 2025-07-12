@@ -266,6 +266,10 @@ button:hover {
 }
 
 @media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
   .button-group {
     flex-direction: column;
   }
@@ -277,7 +281,18 @@ button:hover {
   .users-table {
     font-size: 14px;
     min-width: 800px;
-    white-space: nowrap;
+  }
+  .users-table td:last-child {
+    white-space: normal;
+    min-width: 80px;
+  }
+
+  .users-table .btn-small {
+    padding: 4px 8px;
+    font-size: 11px;
+    margin: 2px 0;
+    display: block;
+    width: 100%;
   }
 
   .users-section {
