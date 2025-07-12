@@ -2,7 +2,6 @@ let usersData = [];
 
 export const users = async () => {
   try {
-    console.log("fetching users ...");
     showMessage("Loading users ...", "info");
     const res = await fetch("/api/users", {
       method: "GET",
@@ -15,13 +14,9 @@ export const users = async () => {
       throw new Error(`Http error! status: ${res.status} `);
     }
     const data = await res.json();
-    console.log(data);
-    console.log(`user fetched successfully`);
-
     usersData = data;
     return data;
   } catch (err) {
-    console.log(`Error fetching users`, err);
     return [];
   }
 };
@@ -36,11 +31,11 @@ export const displayUsers = (users) => {
   }
 
   // sort users
-  const sortedUsers = [...users].sort((a,b) => {
-    const aTime = new Date(a.updatedAt || a.createdAt)
-    const bTime = new Date(b.updatedAt || b.createdAt)
-    return bTime - aTime
-  })
+  const sortedUsers = [...users].sort((a, b) => {
+    const aTime = new Date(a.updatedAt || a.createdAt);
+    const bTime = new Date(b.updatedAt || b.createdAt);
+    return bTime - aTime;
+  });
 
   let html = `
     <table class="users-table">
@@ -58,9 +53,12 @@ export const displayUsers = (users) => {
   `;
 
   sortedUsers.forEach((user) => {
-const lastUpdated = new Date(user.updatedAt || user.createdAt).toLocaleString()
-const isRecentlyModified = new Date() - new Date(user.updatedAt || user.createdAt) < 3000
-const rowClass = isRecentlyModified ? 'class="recently-modified"' : ''; 
+    const lastUpdated = new Date(
+      user.updatedAt || user.createdAt
+    ).toLocaleString();
+    const isRecentlyModified =
+      new Date() - new Date(user.updatedAt || user.createdAt) < 3000;
+    const rowClass = isRecentlyModified ? 'class="recently-modified"' : "";
 
     html += `
       <tr ${rowClass} >
@@ -71,10 +69,10 @@ const rowClass = isRecentlyModified ? 'class="recently-modified"' : '';
         <td>${lastUpdated}</td>
         <td>
          <button onclick="selectUserForUpdate('${
-            user._id
+           user._id
          }')" class="btn-small">Edit</button>
           <button onclick="selectUserForDelete('${
-             user._id
+            user._id
           }')" class="btn-small btn-danger">Delete</button>
         </td>
       </tr>
@@ -91,7 +89,7 @@ const rowClass = isRecentlyModified ? 'class="recently-modified"' : '';
 
 // Select user for update (populate form)
 window.selectUserForUpdate = (userId) => {
-  const user = usersData.find((u) => (u._id) === userId);
+  const user = usersData.find((u) => u._id === userId);
   if (user) {
     document.getElementById("name").value = user.name;
     document.getElementById("email").value = user.email;
@@ -104,29 +102,23 @@ window.selectUserForUpdate = (userId) => {
 
     showMessage(`Selected user: ${user.name} for editing`, "success");
   }
-
 };
 
-
 // Select user for delete
-window.selectUserForDelete =async(userId) => {
-
+window.selectUserForDelete = async (userId) => {
   // Find user name for confirmation
-    const user = usersData.find((u) => ( u._id) === userId);
-    const userName = user ? user.name : "Unknown User";
+  const user = usersData.find((u) => u._id === userId);
+  const userName = user ? user.name : "Unknown User";
 
-
-    if (user) {
-     showMessage(`Selected user: ${user.name} for deletion`, "warning");
+  if (user) {
+    showMessage(`Selected user: ${user.name} for deletion`, "warning");
     // Confirmation dialog
     if (!confirm(`Are you sure you want to delete user: ${userName}?`)) {
       return;
     }
-    
-    
   }
 
-try{
+  try {
     showMessage("Deleting user...", "info");
 
     const res = await fetch(`/api/users/${userId}`, {
@@ -151,7 +143,6 @@ try{
 
     return result;
   } catch (error) {
-    console.error(`Error deleting user`, error);
     showMessage(`Error deleting user: ${error.message}`, "error");
   }
 };
@@ -161,12 +152,11 @@ export const updateUserDropdown = () => {
   if (!dropdown) return;
 
   // sort users for dropdown
-  const sortedUsers = [...usersData].sort((a,b) => {
-    const aTime = new Date(a.updatedAt || a.createdAt)
-    const bTime = new Date(b.updatedAt || b.createdAt)
-    return bTime - aTime
-  })
-
+  const sortedUsers = [...usersData].sort((a, b) => {
+    const aTime = new Date(a.updatedAt || a.createdAt);
+    const bTime = new Date(b.updatedAt || b.createdAt);
+    return bTime - aTime;
+  });
 
   // Clear existing options
   dropdown.innerHTML = '<option value="">Select a user...</option>';
@@ -206,39 +196,48 @@ const isValidPassword = (password) => {
 };
 
 // check for existing email and name
-const isNameorEmailExist =(name = 'string', email = 'string', excludeUserId = null) => {
-  try{
-    const findName = usersData.some(user => user.name === name && (!excludeUserId || user._id !== excludeUserId ))
-    const findEmail = usersData.some(user => user.email === email && (!excludeUserId || !user._id !== excludeUserId) )
-    console.log(`findName: `, findName, findEmail)
-    if(findName && findName) {
-      return{
-        exists:true, message:"Both name and email alrady exists"
-      }
-    }else if (findName){
-return{
-  exists:true, message:"This name already exists"
-}
-    }else if (findEmail) {
-return{
-  exists:true, message:"This email already exists"
-}
+const isNameorEmailExist = (
+  name = "string",
+  email = "string",
+  excludeUserId = null
+) => {
+  try {
+    const findName = usersData.some(
+      (user) =>
+        user.name === name && (!excludeUserId || user._id !== excludeUserId)
+    );
+    const findEmail = usersData.some(
+      (user) =>
+        user.email === email && (!excludeUserId || !user._id !== excludeUserId)
+    );
+    if (findName && findName) {
+      return {
+        exists: true,
+        message: "Both name and email alrady exists",
+      };
+    } else if (findName) {
+      return {
+        exists: true,
+        message: "This name already exists",
+      };
+    } else if (findEmail) {
+      return {
+        exists: true,
+        message: "This email already exists",
+      };
     }
-    return {exists:false, message: ""}
-
-  }catch(err) {
-    console.error('Email or Name already exists')
-    throw err
+    return { exists: false, message: "" };
+  } catch (err) {
+    console.error("Email or Name already exists");
+    throw err;
   }
-}
-
+};
 
 document.getElementById("allUsers").addEventListener("click", async (e) => {
   e.preventDefault();
 
   try {
     const data = await users();
-    console.log(`user fetched successfully`);
     displayUsers(data);
     updateUserDropdown();
     showMessage(`Successfully loaded ${data.length} users`, "success");
@@ -268,7 +267,12 @@ document.getElementById("createUser").addEventListener("click", async (e) => {
     };
 
     // Validation
-    if (!formData.name || !formData.email || !formData.password || !formData.role) {
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.password ||
+      !formData.role
+    ) {
       showMessage(
         "Please fill in all required fields (name, email, password,role)",
         "error"
@@ -289,13 +293,11 @@ document.getElementById("createUser").addEventListener("click", async (e) => {
       return;
     }
 
-    const validation = isNameorEmailExist(formData.name, formData.email)
-     if ( validation.exists ){
-            showMessage(validation.message , "error")
-            return
-
-     }
-
+    const validation = isNameorEmailExist(formData.name, formData.email);
+    if (validation.exists) {
+      showMessage(validation.message, "error");
+      return;
+    }
 
     showMessage("Creating user...", "info");
 
@@ -313,7 +315,6 @@ document.getElementById("createUser").addEventListener("click", async (e) => {
     }
 
     const result = await res.json();
-    console.log("User created successfully: ", result);
 
     clearForm();
     showMessage("User created successfully!", "success");
@@ -340,7 +341,7 @@ document.getElementById("deleteUser").addEventListener("click", async (e) => {
     }
 
     // Find user name for confirmation
-    const user = usersData.find((u) => ( u._id) === userId);
+    const user = usersData.find((u) => u._id === userId);
     const userName = user ? user.name : "Unknown User";
 
     // Confirmation dialog
@@ -409,7 +410,7 @@ document.getElementById("updateUser").addEventListener("click", async (e) => {
     }
 
     // Validation
-    if (!formData.name || !formData.email ||!formData.role) {
+    if (!formData.name || !formData.email || !formData.role) {
       showMessage("Name, role and email are required", "error");
       return;
     }
@@ -419,12 +420,15 @@ document.getElementById("updateUser").addEventListener("click", async (e) => {
       return;
     }
 
-    const validation = isNameorEmailExist(formData.name, formData.email, userId)
-     if ( validation.exists ){
-            showMessage(validation.message , "error")
-            return
-
-     }
+    const validation = isNameorEmailExist(
+      formData.name,
+      formData.email,
+      userId
+    );
+    if (validation.exists) {
+      showMessage(validation.message, "error");
+      return;
+    }
 
     showMessage("Updating user...", "info");
 
