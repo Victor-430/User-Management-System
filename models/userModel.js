@@ -43,7 +43,7 @@ export const createUser = async (newUser) => {
     return createNewUser;
   } catch (error) {
     console.error(`Error creating user`, error);
-    throw error
+    throw error;
   }
 };
 
@@ -55,12 +55,16 @@ export const updateUserModel = async (user, id) => {
       throw new Error(`User with id: ${id} not found`);
     }
 
-    users[index] = { ...users[index], ...user, updatedAt: new Date().toISOString() };
+    users[index] = {
+      ...users[index],
+      ...user,
+      updatedAt: new Date().toISOString(),
+    };
     await writeDataToFile(users);
     return users[index];
   } catch (error) {
     console.error(`Error updating user`);
-    throw error
+    throw error;
   }
 };
 

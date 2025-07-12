@@ -1,0 +1,148 @@
+[
+  {
+    "_id": "68388f07878b9df946aab383",
+    "name": "Dr. Aisha Damilola abiola",
+    "email": "aishadami123@gmail.com",
+    "createdAt": "2025-05-29T16:44:55.490Z",
+    "updatedAt": "2025-06-27T07:50:04.368Z",
+    "__v": 0,
+    "role": "admin"
+  },
+  {
+    "_id": "683b3b88a43d203e33704c21",
+    "name": "johndoe",
+    "email": "123@example.com",
+    "role": "admin",
+    "createdAt": "2025-05-31T17:25:28.898Z",
+    "updatedAt": "2025-05-31T17:25:28.898Z",
+    "__v": 0
+  },
+  {
+    "_id": "683c565ca43d203e33704c93",
+    "name": "Nurse Nancy",
+    "email": "nurse123@example.com",
+    "role": "admin",
+    "createdAt": "2025-06-01T13:32:12.436Z",
+    "updatedAt": "2025-06-01T13:32:12.436Z",
+    "__v": 0
+  },
+  {
+    "_id": "683ca5b7c550ec93a48549c0",
+    "name": "Dawodu Fatai Olalekan",
+    "email": "dawoduolalekanfatai@gmail.com",
+    "role": "admin",
+    "createdAt": "2025-06-01T19:10:47.218Z",
+    "updatedAt": "2025-06-01T19:10:47.218Z",
+    "__v": 0
+  },
+  {
+    "_id": "683cb8a19184385713bc06cb",
+    "name": "Dawodu Fatai",
+    "email": "chijiokeemmel@gmail.com",
+    "role": "admin",
+    "photo": "default.jpg",
+    "createdAt": "2025-06-01T20:31:29.582Z",
+    "updatedAt": "2025-06-01T20:31:29.582Z",
+    "__v": 0
+  },
+  {
+    "_id": "683cba289184385713bc06d0",
+    "name": "ola",
+    "email": "ola@example.com",
+    "role": "admin",
+    "photo": "default.jpg",
+    "createdAt": "2025-06-01T20:38:00.243Z",
+    "updatedAt": "2025-06-01T20:38:00.243Z",
+    "__v": 0
+  },
+  {
+    "_id": "a949ffedcd51429aaf704c353245ad25",
+    "createdAt": "2025-06-26T08:59:47.290Z",
+    "updatedAt": "2025-06-26T08:59:47.290Z",
+    "__v": 0,
+    "name": "Oyeleke Victor Oluwatobi",
+    "password": "366337Gshsh",
+    "email": "oyeleke123@gmail.com",
+    "role": "admin"
+  },
+  {
+    "_id": "262255da968b4e09a6aca914c1545b90",
+    "createdAt": "2025-06-26T09:01:29.275Z",
+    "updatedAt": "2025-06-26T09:01:29.275Z",
+    "__v": 0,
+    "name": "mum",
+    "password": "26737312jdjdjjkdkkKkhs",
+    "email": "oyeleke123@gmail.com",
+    "role": "user"
+  },
+  {
+    "_id": "3fab939dec75483997ddf42de9604be4",
+    "createdAt": "2025-06-26T09:01:29.678Z",
+    "updatedAt": "2025-06-26T09:01:29.678Z",
+    "__v": 0,
+    "name": "mum",
+    "password": "26737312jdjdjjkdkkKkhs",
+    "email": "oyeleke123@gmail.com",
+    "role": "user"
+  },
+  {
+    "_id": "7a9a4019ae564dd6ac3012f10dc334ac",
+    "createdAt": "2025-06-26T09:09:54.593Z",
+    "updatedAt": "2025-06-26T09:09:54.594Z",
+    "__v": 0,
+    "name": "john",
+    "password": "ddjsjsjsj3637JHjjs",
+    "email": "george@krugerindustrial.com",
+    "role": ""
+  },
+  {
+    "_id": "8e1a9da549424f14943c937537e394ab",
+    "createdAt": "2025-06-26T09:12:28.976Z",
+    "updatedAt": "2025-06-26T09:12:28.976Z",
+    "__v": 0,
+    "name": "victor",
+    "password": "37838yfhjjfjsjJHhjjd",
+    "email": "oyeleke123@gmail.com",
+    "role": "user"
+  },
+  {
+    "_id": "8f522c20e0e14c08a6b415a8256f33bb",
+    "createdAt": "2025-06-27T07:51:11.620Z",
+    "updatedAt": "2025-06-27T07:51:11.620Z",
+    "__v": 0,
+    "name": "john james gabriel",
+    "password": "dhdjsjhGhjsj23763",
+    "email": "gabrieljohn@gmail.com",
+    "role": "guest"
+  },
+  {
+    "_id": "85232d08bd254d41ab63a096f2a99e65",
+    "createdAt": "2025-06-27T07:54:19.077Z",
+    "updatedAt": "2025-06-27T07:54:19.077Z",
+    "__v": 0,
+    "name": "john Gabriel Afolayan",
+    "password": "djddjjskjkjjdk33783JKkj",
+    "email": "gabrielafolayan@gmail.com",
+    "role": "moderator"
+  },
+  {
+    "_id": "e11fed98846245e8bc8e71930a7a6797",
+    "createdAt": "2025-06-27T09:24:51.690Z",
+    "updatedAt": "2025-06-27T09:24:51.691Z",
+    "__v": 0,
+    "name": "john Gabriel Afolayan",
+    "password": "dhjdjjJjdh2672762",
+    "email": "oyeleke123@gmail.com",
+    "role": "user"
+  },
+  {
+    "_id": "45da68e074934600a3b36529eb3ae6bb",
+    "createdAt": "2025-06-27T09:51:50.244Z",
+    "updatedAt": "2025-06-27T09:51:50.244Z",
+    "__v": 0,
+    "name": "John jesus1234",
+    "password": "ddjdjj126GH",
+    "email": "oyeleke123@gmail.com",
+    "role": "user"
+  }
+]
