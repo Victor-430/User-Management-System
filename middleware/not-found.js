@@ -6,8 +6,8 @@ export const errorhandler = (err, req, res, next) => {
   }
 };
 
-export const routeError = (err, req, res, next) => {
-  const error = new error("route not found");
+export const routeError = (req, res, next) => {
+  const error = new Error("route not found");
   error.status = 404;
   next(error);
 };
