@@ -1,5 +1,5 @@
 import { writeDataToFile } from "../utils.js";
-import { users } from "./users.j";
+import { users } from "./users.js";
 import { v4 as uuidv4 } from "uuid";
 
 export const fetchAllUsers = async () => {
