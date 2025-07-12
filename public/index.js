@@ -87,6 +87,22 @@ export const displayUsers = (users) => {
   usersList.innerHTML = html;
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+const smoothScrollToTop = () => {
+  const currentScroll =
+    document.documentElement.scrollTop || document.body.scrollTop;
+  if (currentScroll > 0) {
+    window.requestAnimationFrame(smoothScrollToTop);
+    window.scrollTo(0, currentScroll - currentScroll / 8);
+  }
+};
+
 // Select user for update (populate form)
 window.selectUserForUpdate = (userId) => {
   const user = usersData.find((u) => u._id === userId);
@@ -101,6 +117,17 @@ window.selectUserForUpdate = (userId) => {
     if (dropdown) dropdown.value = userId;
 
     showMessage(`Selected user: ${user.name} for editing`, "success");
+
+    scrollToTop();
+
+    // Optional: Add a brief highlight to the form section
+    const formSection = document.querySelector(".form-section");
+    if (formSection) {
+      formSection.style.animation = "none";
+      setTimeout(() => {
+        formSection.style.animation = "highlight-form 1s ease-out";
+      }, 100);
+    }
   }
 };
 
