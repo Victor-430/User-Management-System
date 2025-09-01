@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>CRUD</title>
-  </head>
-  <body>
-    <div class="container">
+const setupHTML = () => {
+  document.body.innerHTML = `
+     <div class="container">
       <h1>User Management System</h1>
 
       <!-- Message Display -->
@@ -27,6 +20,11 @@
         </div>
 
         <p id="headline">* Form (for Create/update)</p>
+
+        // <div class="form-group">
+        //   <label for="name">Name *</label>
+        //   <input type="text" id="name" placeholder="Enter full name" required />
+        // </div>
 
         <div data-testId="name-container" class="form-group">
           <label for="name">Name *</label>
@@ -87,6 +85,7 @@
         </div>
       </div>
     </div>
-    <script type="module" src="./index.js"></script>
-  </body>
-</html>
+    `;
+};
+
+export default setupHTML;

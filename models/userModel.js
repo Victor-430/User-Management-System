@@ -1,4 +1,4 @@
-import { writeDataToFile } from "../utils.js";
+// import { writeDataToFile } from "../utils.js";
 import { users } from "./users.js";
 import { v4 as uuidv4 } from "uuid";
 
@@ -16,6 +16,8 @@ export const findById = async (id) => {
     throw new Error(`User with id not found`);
   }
 };
+
+//create user
 
 export const createUser = async (newUser) => {
   try {
@@ -43,9 +45,11 @@ export const createUser = async (newUser) => {
     return createNewUser;
   } catch (error) {
     console.error(`Error creating user`, error);
-    throw error
+    throw error;
   }
 };
+
+//update user
 
 export const updateUserModel = async (user, id) => {
   try {
@@ -55,12 +59,16 @@ export const updateUserModel = async (user, id) => {
       throw new Error(`User with id: ${id} not found`);
     }
 
-    users[index] = { ...users[index], ...user, updatedAt: new Date().toISOString() };
+    users[index] = {
+      ...users[index],
+      ...user,
+      updatedAt: new Date().toISOString(),
+    };
     await writeDataToFile(users);
     return users[index];
   } catch (error) {
     console.error(`Error updating user`);
-    throw error
+    throw error;
   }
 };
 
