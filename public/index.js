@@ -2,7 +2,6 @@ let usersData = [];
 
 export const users = async () => {
   try {
-    console.log("fetching users ...");
     showMessage("Loading users ...", "info");
     const res = await fetch("/api/users", {
       method: "GET",
@@ -15,13 +14,9 @@ export const users = async () => {
       throw new Error(`Http error! status: ${res.status} `);
     }
     const data = await res.json();
-    console.log(data);
-    console.log(`user fetched successfully`);
-
     usersData = data;
     return data;
   } catch (err) {
-    console.log(`Error fetching users`, err);
     return [];
   }
 };
@@ -92,6 +87,22 @@ export const displayUsers = (users) => {
   usersList.innerHTML = html;
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
+const smoothScrollToTop = () => {
+  const currentScroll =
+    document.documentElement.scrollTop || document.body.scrollTop;
+  if (currentScroll > 0) {
+    window.requestAnimationFrame(smoothScrollToTop);
+    window.scrollTo(0, currentScroll - currentScroll / 8);
+  }
+};
+
 // Select user for update (populate form)
 window.selectUserForUpdate = (userId) => {
   const user = usersData.find((u) => u._id === userId);
@@ -106,6 +117,17 @@ window.selectUserForUpdate = (userId) => {
     if (dropdown) dropdown.value = userId;
 
     showMessage(`Selected user: ${user.name} for editing`, "success");
+
+    scrollToTop();
+
+    // Optional: Add a brief highlight to the form section
+    const formSection = document.querySelector(".form-section");
+    if (formSection) {
+      formSection.style.animation = "none";
+      setTimeout(() => {
+        formSection.style.animation = "highlight-form 1s ease-out";
+      }, 100);
+    }
   }
 };
 
@@ -148,7 +170,6 @@ window.selectUserForDelete = async (userId) => {
 
     return result;
   } catch (error) {
-    console.error(`Error deleting user`, error);
     showMessage(`Error deleting user: ${error.message}`, "error");
   }
 };
@@ -245,7 +266,6 @@ export const handleLoadAllUsers = async (e) => {
 
   try {
     const data = await users();
-    console.log(`user fetched successfully`);
     displayUsers(data);
     updateUserDropdown();
     showMessage(`Successfully loaded ${data.length} users`, "success");
@@ -326,7 +346,6 @@ export const handleCreateUser = async (e) => {
     }
 
     const result = await res.json();
-    console.log("User created successfully: ", result);
 
     clearForm();
     showMessage("User created successfully!", "success");
